@@ -1,6 +1,7 @@
 from django.forms import ModelForm
 from .models import Comentario
 import requests
+from django.conf import settings
 
 
 class FormComentario(ModelForm):
@@ -10,7 +11,7 @@ class FormComentario(ModelForm):
         recaptcha_request = requests.post(
             'https://www.google.com/recaptcha/api/siteverify',
             data={
-                'secret': '6Le_Re4UAAAAADCwc1p2ta5RwtQJpoIVd1iHpVun',
+                'secret': settings.reCAPTCHA_KEY,
                 'response': recaptcha_response
             }
         )
