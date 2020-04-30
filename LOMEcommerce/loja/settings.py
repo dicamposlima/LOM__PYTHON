@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'pedido.apps.PedidoConfig',
     'produto.apps.ProdutoConfig',
-    'perfil.apps.PerfilConfig'
+    'perfil.apps.PerfilConfig',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -136,6 +137,8 @@ MESSAGE_TAGS = {
 
 SESSION_COOKIE_AGE = 60 * 60 * 24 * 7
 SESSION_SAVE_EVERY_REQUEST = False
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 try:
     from loja.local_settings import *

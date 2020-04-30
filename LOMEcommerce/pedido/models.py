@@ -5,17 +5,22 @@ from django.contrib.auth.models import User
 class Pedido(models.Model):
     usuario = models.ForeignKey(User, on_delete=models.CASCADE)
     total = models.FloatField()
-    status = models.CharField(default='C', max_length=1, choices=(
-        ('A', 'Aprovado'),
-        ('C', 'Criado'),
-        ('R', 'Reprovado'),
-        ('P', 'Pendente'),
-        ('E', 'Enviado'),
-        ('F', 'Finalizado')
-    ))
+    qtd_total = models.PositiveIntegerField(default=0)
+    status = models.CharField(
+        default="C",
+        max_length=1,
+        choices=(
+            ('A', 'Aprovado'),
+            ('C', 'Criado'),
+            ('R', 'Reprovado'),
+            ('P', 'Pendente'),
+            ('E', 'Enviado'),
+            ('F', 'Finalizado'),
+        )
+    )
 
     def __str__(self):
-        return f'Pedido nro. {self.pk}'
+        return f'Pedido N. {self.pk}'
 
 
 class ItemPedido(models.Model):
@@ -26,12 +31,12 @@ class ItemPedido(models.Model):
     variacao_id = models.PositiveIntegerField()
     preco = models.FloatField()
     preco_promocional = models.FloatField(default=0)
-    quantidade = models.PositiveIntegerField(default=1)
+    quantidade = models.PositiveIntegerField()
     imagem = models.CharField(max_length=2000)
 
     def __str__(self):
-        return f'Item do Pedido {self.pedido}'
+        return f'Item do {self.pedido}'
 
     class Meta:
-        verbose_name = 'Item do Pedido'
-        verbose_name_plural = 'Itens do Pedido'
+        verbose_name = 'Item do pedido'
+        verbose_name_plural = 'Itens do pedido'
